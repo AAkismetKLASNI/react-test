@@ -1,6 +1,6 @@
 import styles from './App.module.css';
 
-import { Display } from './MyConponent';
+import { Display } from './Display';
 
 export const App = () => {
 	return (
