@@ -14,18 +14,20 @@
 }
 
 .containerCalc {
-	background-color: black;
 	width: 340px;
 	padding: 50px 30px;
 	display: flex;
 	flex-direction: column;
 	gap: 50px;
-	border: 1px solid white;
 }
 
 .inputCalc {
-	height: 60px;
+	height: 45px;
 	font-size: calc(10px + 2vmin);
+	border-radius: 10px;
+	background-color: #1c1f24;
+	border: none;
+	padding: 10px;
 }
 
 .wrapper {
@@ -34,7 +36,7 @@
 }
 
 .wrapper button {
-	background-color: #282c34;
+	background-color: rgba(0, 0, 0, 0.3);
 	width: 70px;
 	height: 70px;
 	display: flex;
@@ -43,20 +45,27 @@
 	cursor: pointer;
 	color: white;
 	font-size: calc(10px + 2vmin);
+	border: none;
+	border-radius: 50%;
 }
 
 .wrapper button:hover {
-	background-color: #1b1d22;
+	background-color: #151516;
+	color: lightskyblue;
 }
 
 .containerNums {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	gap: 3px;
+	gap: 10px;
 }
 
 .containerOperation {
 	display: grid;
 	grid-template-columns: 1fr;
-	gap: 3px;
+	gap: 10px;
+}
+
+.containerOperation button {
+	background-color: rgb(41, 68, 41);
 }

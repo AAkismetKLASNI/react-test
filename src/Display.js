@@ -60,7 +60,7 @@ export const Display = () => {
 			<input
 				className={styles.inputCalc}
 				value={operand1 + operator + operand2}
-				style={colorResult ? { color: '#FF0000' } : { color: '#000' }}
+				style={colorResult ? { color: '#FF0000' } : { color: '#fff' }}
 			/>
 			<div className={styles.wrapper} onClick={calculationsDisplay}>
 				<div className={styles.containerNums}>
