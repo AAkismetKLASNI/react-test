@@ -1,7 +1,10 @@
+import { Field, Information } from './index';
+
 export const GameLayout = () => {
 	return (
 		<>
-			<div>123</div>
+			<Field />
+			<Information />
 		</>
 	);
 };
