@@ -1,0 +1,10 @@
+.fieldBtn {
+	width: 70px;
+	height: 70px;
+	opacity: 0.5;
+}
+
+.container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}

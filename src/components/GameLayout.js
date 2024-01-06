@@ -1,10 +1,13 @@
 import { Field, Information } from './index';
+import styles from './GameLayout.module.css';
 
 export const GameLayout = () => {
 	return (
 		<>
-			<Field />
-			<Information />
+			<div className={styles.containerApp}>
+				<Field />
+				<Information />
+			</div>
 		</>
 	);
 };
