@@ -1,3 +1,7 @@
 export const GameLayout = () => {
-	console.log(1231);
+	return (
+		<>
+			<div>123</div>
+		</>
+	);
 };

@@ -1,4 +1,4 @@
-import { GameLayout } from './components/GameLayout';
+import { GameLayout } from './components/index';
 
 export const App = () => {
 	return <GameLayout />;

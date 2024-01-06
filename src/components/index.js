@@ -1,1 +1,1 @@
-import * from './GameLayout'
+export * from './GameLayout';
