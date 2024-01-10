@@ -7,6 +7,8 @@ export const App = () => {
 	const [isGameEnded, setIsGameEnded] = useState(false);
 	const [isDraw, setIsDraw] = useState(false);
 
+	const q = 1;
+
 	return (
 		<GameLayout
 			field={field}
