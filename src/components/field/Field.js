@@ -1,20 +1,36 @@
 import { FieldLayout } from './FieldLayout';
+import { WIN_PATTERNS } from '../../core/constants';
 
-export const Field = () => {
-	const lines = [
-		[0, 1, 2],
-		[3, 4, 5],
-		[6, 7, 8],
-		[0, 3, 6],
-		[1, 4, 7],
-		[2, 5, 8],
-		[0, 4, 8],
-		[2, 4, 6],
-	];
+export const Field = ({
+	field,
+	currentPlayer,
+	setCurrentPlayer,
+	setIsGameEnded,
+	setIsDraw,
+}) => {
+	function calculateWinner(field) {
+		for (let i = 0; i < WIN_PATTERNS.length; i++) {
+			const [a, b, c] = WIN_PATTERNS[i];
+			if (field[a] && field[a] === field[b] && field[a] === field[c]) {
+				return true;
+			}
+		}
+		return null;
+	}
 
-	const test = (event) => {
-		console.log(event);
+	const handleClick = (index) => {
+		if (!calculateWinner(field) && !field[index]) {
+			field[index] = currentPlayer === 'X' ? 'X' : 'O';
+
+			if (!calculateWinner(field) && field.every((el) => el)) {
+				setIsDraw(true);
+			} else if (calculateWinner(field)) {
+				setIsGameEnded(true);
+			} else {
+				currentPlayer === 'X' ? setCurrentPlayer('O') : setCurrentPlayer('X');
+			}
+		}
 	};
 
-	return <FieldLayout test={test} />;
+	return <FieldLayout field={field} handleClick={handleClick} />;
 };

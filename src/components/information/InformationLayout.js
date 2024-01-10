@@ -1,9 +1,21 @@
-export const InformationLayout = () => {
+import styles from './information.module.css';
+
+export const InformationLayout = ({
+	currentPlayer,
+	startNewGame,
+	checkDrawAndEndedGame,
+}) => {
 	return (
 		<>
-			<h3 style={{ textAlign: 'center' }}>
-				Ходит: <br /> X
-			</h3>
+			<div className={styles.containerInformation}>
+				<h3 style={{ textAlign: 'center' }}>{checkDrawAndEndedGame()}</h3>
+				<button
+					className={styles.startNewGameButton}
+					onClick={() => startNewGame()}
+				>
+					Начать заново
+				</button>
+			</div>
 		</>
 	);
 };
