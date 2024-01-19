@@ -1,11 +1,11 @@
-import styles from './form.module.css';
+import styles from './Form.module.css';
 
 export const Form = () => {
 	return (
 		<>
 			<form>
 				<p>Введите email</p>
-				<div>
+				<div className={styles.form}>
 					<input type="" />
 					<div>1</div>
 				</div>
