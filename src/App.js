@@ -1,7 +1,9 @@
-import { Form } from './components/index'
- 
+import { Form } from './components/index';
+
 export const App = () => {
-	return <>
-	<Form/>
-	</>
+	return (
+		<>
+			<Form />
+		</>
+	);
 };
