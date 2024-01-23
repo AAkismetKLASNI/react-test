@@ -125,7 +125,7 @@ export const Form = () => {
 
 	const onSubmit = (event) => {
 		event.preventDefault();
-		console.log({ email, password });
+		sendFromData({ email, password });
 	};
 
 	return (
