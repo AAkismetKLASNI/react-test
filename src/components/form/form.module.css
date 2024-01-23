@@ -1,4 +1,35 @@
-.test {
-	color: black;
+.formValidate {
+	background-color: rgb(46, 46, 46);
+	width: 500px;
+	height: 600px;
 	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.formValidate * {
+	width: 300px;
+}
+
+.inputValidate,
+.buttonValidate {
+	padding: 10px;
+	border: none;
+}
+
+.buttonValidate {
+	background-color: azure;
+	width: 320px;
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+.buttonValidate:focus {
+	background-color: black;
+	color: white;
+}
+
+.redColorError {
+	color: red;
 }
