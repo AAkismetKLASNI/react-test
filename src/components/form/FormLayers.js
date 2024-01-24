@@ -3,7 +3,7 @@ import styles from './Form.module.css';
 export const FormLayers = (props) => {
 	return (
 		<>
-			<form className={styles.formValidate} onSubmit={props.onSubmit}>
+			<form className={styles.formValidate}>
 				<div className={styles.wrapper}>
 					<div>
 						<p>Введите email</p>
@@ -11,14 +11,9 @@ export const FormLayers = (props) => {
 							name="email"
 							type="email"
 							placeholder="Введите email"
-							value={props.email}
-							onChange={props.changeLogin}
-							onBlur={props.blurLogin}
 							className={styles.inputValidate}
 						/>
-						{props.errorEmail && (
-							<div className={styles.redColorError}>{props.errorEmail}</div>
-						)}
+						{1 && <div className={styles.redColorError}>1</div>}
 					</div>
 					<div>
 						<p>Введите пароль</p>
@@ -26,14 +21,9 @@ export const FormLayers = (props) => {
 							name="password"
 							type="password"
 							placeholder="Введите пароль"
-							value={props.password}
-							onChange={props.changePassword}
-							onBlur={props.blurPasswords}
 							className={styles.inputValidate}
 						/>
-						{props.errorPassword && (
-							<div className={styles.redColorError}>{props.errorPassword}</div>
-						)}
+						{1 && <div className={styles.redColorError}>{1}</div>}
 					</div>
 					<div>
 						<p>Повторите пароль</p>
@@ -41,27 +31,11 @@ export const FormLayers = (props) => {
 							name="confirmPassword"
 							type="password"
 							placeholder="Подтвердите пароль"
-							value={props.replyPassword}
-							onChange={props.changeConfirmPassword}
-							onBlur={props.blurPasswords}
 							className={styles.inputValidate}
 						/>
-						{props.errorConfirmPassword && (
-							<div className={styles.redColorError}>
-								{props.errorConfirmPassword}
-							</div>
-						)}
+						{1 && <div className={styles.redColorError}>{1}</div>}
 					</div>
-					<button
-						type="submit"
-						disabled={
-							props.errorEmail ||
-							props.errorPassword ||
-							props.errorConfirmPassword
-						}
-						className={styles.buttonValidate}
-						ref={props.submitButtonRef}
-					>
+					<button type="submit" className={styles.buttonValidate}>
 						Зарегистрироваться
 					</button>
 				</div>
