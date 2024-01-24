@@ -13,7 +13,9 @@ export const FormLayers = (props) => {
 							placeholder="Введите email"
 							className={styles.inputValidate}
 						/>
-						{1 && <div className={styles.redColorError}>1</div>}
+						{props.loginError && (
+							<div className={styles.redColorError}>{props.loginError}</div>
+						)}
 					</div>
 					<div>
 						<p>Введите пароль</p>
@@ -23,7 +25,9 @@ export const FormLayers = (props) => {
 							placeholder="Введите пароль"
 							className={styles.inputValidate}
 						/>
-						{1 && <div className={styles.redColorError}>{1}</div>}
+						{props.passwordError && (
+							<div className={styles.redColorError}>{props.passwordErro}</div>
+						)}
 					</div>
 					<div>
 						<p>Повторите пароль</p>
@@ -33,7 +37,11 @@ export const FormLayers = (props) => {
 							placeholder="Подтвердите пароль"
 							className={styles.inputValidate}
 						/>
-						{1 && <div className={styles.redColorError}>{1}</div>}
+						{props.confirmPasswordError && (
+							<div className={styles.redColorError}>
+								{props.confirmPasswordError}
+							</div>
+						)}
 					</div>
 					<button type="submit" className={styles.buttonValidate}>
 						Зарегистрироваться
