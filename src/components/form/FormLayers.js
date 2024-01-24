@@ -1,20 +1,31 @@
 import styles from './Form.module.css';
 
-export const FormLayers = (props) => {
+export const FormLayers = ({
+	loginError,
+	passwordError,
+	confirmPasswordError,
+	register,
+	handleSubmit,
+	sendFormData,
+}) => {
 	return (
 		<>
-			<form className={styles.formValidate}>
+			<form
+				className={styles.formValidate}
+				onSubmit={handleSubmit(sendFormData)}
+			>
 				<div className={styles.wrapper}>
 					<div>
 						<p>Введите email</p>
 						<input
 							name="email"
 							type="email"
-							placeholder="Введите email"
+							{...register('login')}
+							placeholder="Введите email*"
 							className={styles.inputValidate}
 						/>
-						{props.loginError && (
-							<div className={styles.redColorError}>{props.loginError}</div>
+						{loginError && (
+							<div className={styles.redColorError}>{loginError}</div>
 						)}
 					</div>
 					<div>
@@ -22,11 +33,12 @@ export const FormLayers = (props) => {
 						<input
 							name="password"
 							type="password"
-							placeholder="Введите пароль"
+							{...register('password')}
+							placeholder="Введите пароль*"
 							className={styles.inputValidate}
 						/>
-						{props.passwordError && (
-							<div className={styles.redColorError}>{props.passwordErro}</div>
+						{passwordError && (
+							<div className={styles.redColorError}>{passwordError}</div>
 						)}
 					</div>
 					<div>
@@ -34,16 +46,19 @@ export const FormLayers = (props) => {
 						<input
 							name="confirmPassword"
 							type="password"
-							placeholder="Подтвердите пароль"
+							{...register('confirmPassword')}
+							placeholder="Подтвердите пароль*"
 							className={styles.inputValidate}
 						/>
-						{props.confirmPasswordError && (
-							<div className={styles.redColorError}>
-								{props.confirmPasswordError}
-							</div>
+						{confirmPasswordError && (
+							<div className={styles.redColorError}>{confirmPasswordError}</div>
 						)}
 					</div>
-					<button type="submit" className={styles.buttonValidate}>
+					<button
+						type="submit"
+						className={styles.buttonValidate}
+						disabled={!!loginError || !!passwordError || !!confirmPasswordError}
+					>
 						Зарегистрироваться
 					</button>
 				</div>
