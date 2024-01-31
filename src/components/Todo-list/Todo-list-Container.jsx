@@ -5,12 +5,13 @@ export const TodoListContainer = () => {
 	const [todo, setTodo] = useState([]);
 
 	useEffect(() => {
-		fetch('https://jsonplaceholder.typicode.com/todos/1')
+		fetch('http://localhost:3005/todos')
 			.then((rawResponse) => rawResponse.json())
 			.then((loadedData) => {
+				console.log(loadedData);
 				setTodo(loadedData);
 			});
 	}, []);
 
-	return <TodoListLayout {...todo} />;
+	return <TodoListLayout todo={todo} />;
 };

@@ -1,19 +1,14 @@
 import styles from './Todo-list.module.css';
+import { TodoItem } from '../index';
 
-export const TodoListLayout = ({ id, title }) => {
+export const TodoListLayout = ({ todo }) => {
 	return (
 		<>
-			<div className={styles.ContainerTodos}>
-				<div className={styles.TodoItem}>
-					<div className={styles.ContainerMini}>
-						<div key={id}>{title}</div>
-						<div className={styles.ContainerOperation}>
-							<span className={styles.EditTodo}>И</span>
-							<span className={styles.DeleteTodo}>-</span>
-						</div>
-					</div>
-				</div>
-			</div>
+			<ul className={styles.ContainerTodos}>
+				{todo.map(({ id, title }) => (
+					<TodoItem id={id} title={title} />
+				))}
+			</ul>
 		</>
 	);
 };
