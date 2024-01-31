@@ -1,0 +1,56 @@
+.Container {
+	width: 100%;
+	max-width: 1220px;
+	margin: 0 auto;
+	padding: 0 10px;
+}
+
+.Wrapper {
+	display: flex;
+	flex-direction: column;
+	background-color: #c7eaea;
+	min-height: 100vh;
+}
+
+.SearchAndCreateTaskContainer {
+	background-color: #bdbdbd;
+	height: 115px;
+	display: flex;
+	align-items: center;
+}
+
+.ContainerMini {
+	padding: 0 10px;
+	margin: 0 auto;
+	width: 1100px;
+	display: flex;
+	gap: 10px;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.SearchAndCreateTaskContainer input {
+	height: 40px;
+	width: 100%;
+	max-width: 665px;
+	padding-left: 10px;
+	border: none;
+	background-color: #d9d9d9;
+}
+
+.CreateTaskIcon {
+	height: 60px;
+	width: 60px;
+	background-color: #ebeca8;
+	border-radius: 50%;
+	font-size: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.CreateTaskIcon:hover {
+	opacity: 0.8;
+}
