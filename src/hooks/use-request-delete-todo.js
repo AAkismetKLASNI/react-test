@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
-
-export const useRequestDeleteTodo = (id) => {
-	const requestDeleteTodo = () => {
-		fetch(`http://localhost:3005/todos/${id}`, { method: 'DELETE' });
+export const useRequestDeleteTodo = (refresher) => {
+	const requestDeleteTodo = (id) => {
+		fetch(`http://localhost:3500/todos/${id}`, { method: 'DELETE' }).then(() =>
+			refresher(),
+		);
 	};
 	return { requestDeleteTodo };
 };

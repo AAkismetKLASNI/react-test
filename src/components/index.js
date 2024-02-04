@@ -1,4 +1,4 @@
 export { TodoListContainer } from './Todo-list/Todo-list-Container.jsx';
+export { MainContainer } from './Main/MainContainer.jsx';
+export { TodoItem, CreateTodoItem } from './Todo/Todo.jsx';
 export { Header } from './Header/Header.jsx';
-export { Main } from './Main/Main.jsx';
-export { TodoItem } from './Todo/Todo.jsx';

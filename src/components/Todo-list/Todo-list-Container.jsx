@@ -1,17 +1,21 @@
-import { useEffect, useState } from 'react';
 import { TodoListLayout } from './Todo-list-Layout';
 
-export const TodoListContainer = () => {
-	const [todo, setTodo] = useState([]);
-
-	useEffect(() => {
-		fetch('http://localhost:3005/todos')
-			.then((rawResponse) => rawResponse.json())
-			.then((loadedData) => {
-				console.log(loadedData);
-				setTodo(loadedData);
-			});
-	}, []);
-
-	return <TodoListLayout todo={todo} />;
+export const TodoListContainer = ({
+	todo,
+	todoCreated,
+	refresher,
+	requestCreateTodoItem,
+	inputTodo,
+	handleChange,
+}) => {
+	return (
+		<TodoListLayout
+			todo={todo}
+			todoCreated={todoCreated}
+			refresher={refresher}
+			requestCreateTodoItem={requestCreateTodoItem}
+			inputTodo={inputTodo}
+			handleChange={handleChange}
+		/>
+	);
 };
