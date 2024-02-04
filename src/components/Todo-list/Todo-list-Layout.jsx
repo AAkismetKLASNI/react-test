@@ -7,6 +7,8 @@ export const TodoListLayout = ({
 	requestCreateTodoItem,
 	inputTodo,
 	handleChange,
+	errorInputTodo,
+	handleBlur,
 }) => {
 	return (
 		<>
@@ -17,6 +19,8 @@ export const TodoListLayout = ({
 						requestCreateTodoItem={requestCreateTodoItem}
 						inputTodo={inputTodo}
 						handleChange={handleChange}
+						errorInputTodo={errorInputTodo}
+						handleBlur={handleBlur}
 					/>
 				) : null}
 				{Object.entries(todo).map(([, { title, id }]) => (

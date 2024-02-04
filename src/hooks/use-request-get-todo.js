@@ -7,7 +7,6 @@ export const useRequestGetTodo = (refreshData) => {
 		fetch('http://localhost:3500/todos')
 			.then((res) => res.json())
 			.then((loadedData) => {
-				console.log(loadedData);
 				setTodo(loadedData.reverse());
 			});
 	}, [refreshData]);

@@ -8,6 +8,8 @@ export const CreateTodoItem = ({
 	requestCreateTodoItem,
 	inputTodo,
 	handleChange,
+	errorInputTodo,
+	handleBlur,
 }) => {
 	return (
 		<li className={styles.TodoItem}>
@@ -16,11 +18,16 @@ export const CreateTodoItem = ({
 					className={styles.inputTodo}
 					value={inputTodo}
 					onChange={handleChange}
+					onBlur={handleBlur}
 					placeholder="Название"
 				/>
+				{errorInputTodo && (
+					<span style={{ color: 'red' }}>{errorInputTodo}</span>
+				)}
 				<button
 					className={styles.buttonCreateTodo}
 					onClick={() => requestCreateTodoItem(refresher)}
+					disabled={errorInputTodo}
 				>
 					Подтвердить
 				</button>

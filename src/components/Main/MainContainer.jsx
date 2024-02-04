@@ -7,7 +7,6 @@ export const MainContainer = () => {
 	const [refreshData, setRefreshData] = useState(false);
 	const refresher = () => {
 		setRefreshData(!refreshData);
-		console.log('WE', refreshData);
 	};
 
 	const {
@@ -16,6 +15,8 @@ export const MainContainer = () => {
 		todoCreated,
 		inputTodo,
 		requestCreateTodoItem,
+		errorInputTodo,
+		handleBlur,
 	} = useRequestCreateTodo();
 
 	const { todo } = useRequestGetTodo(refreshData);
@@ -29,6 +30,8 @@ export const MainContainer = () => {
 			inputTodo={inputTodo}
 			requestCreateTodoItem={requestCreateTodoItem}
 			refresher={refresher}
+			errorInputTodo={errorInputTodo}
+			handleBlur={handleBlur}
 		/>
 	);
 };

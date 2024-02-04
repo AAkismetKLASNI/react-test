@@ -1,5 +1,5 @@
 import styles from './Main.module.css';
-import { TodoListContainer } from '../Todo-list/Todo-list-Container';
+import { TodoListLayout } from '../Todo-list/Todo-list-Layout';
 
 export const MainLayout = ({
 	todo,
@@ -9,6 +9,8 @@ export const MainLayout = ({
 	requestCreateTodoItem,
 	handleChange,
 	inputTodo,
+	errorInputTodo,
+	handleBlur,
 }) => {
 	return (
 		<>
@@ -28,13 +30,15 @@ export const MainLayout = ({
 								</div>
 							</div>
 						</div>
-						<TodoListContainer
+						<TodoListLayout
 							todo={todo}
 							todoCreated={todoCreated}
 							refresher={refresher}
 							requestCreateTodoItem={requestCreateTodoItem}
 							handleChange={handleChange}
 							inputTodo={inputTodo}
+							errorInputTodo={errorInputTodo}
+							handleBlur={handleBlur}
 						/>
 					</div>
 				</div>

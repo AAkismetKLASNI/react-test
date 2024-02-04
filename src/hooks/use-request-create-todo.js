@@ -1,10 +1,4 @@
 import { useState } from 'react';
-import * as yup from 'yup';
-
-const validateInput = yup
-	.string()
-	.min(1, 'Минимум 1 символ')
-	.max(30, 'Максимум 30 символов');
 
 export const useRequestCreateTodo = () => {
 	const [todoCreated, setTodoCreated] = useState(false);
@@ -27,18 +21,37 @@ export const useRequestCreateTodo = () => {
 
 	const handleChange = (e) => {
 		setInputTodo(e.target.value);
+
+		let error = null;
+
+		if (e.target.value.length > 60) {
+			error = 'Максимум 60 символов';
+			console.log(error);
+		}
+
+		setErrorInputTodo(error);
+	};
+
+	const handleBlur = (e) => {
+		console.log(e);
+		let error = null;
+		if (e.target.value.length < 1) {
+			error = 'Минимум 1 символ';
+		}
+		setErrorInputTodo(error);
 	};
 
 	const switchTodo = () => {
 		setTodoCreated(!todoCreated);
-		console.log('state', todoCreated);
 	};
 
 	return {
 		requestCreateTodoItem,
 		handleChange,
+		handleBlur,
 		switchTodo,
 		todoCreated,
 		inputTodo,
+		errorInputTodo,
 	};
 };
