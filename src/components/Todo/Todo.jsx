@@ -1,5 +1,4 @@
 import styles from './Todo-Item.module.css';
-import { useRequestCreateTodo } from '../../hooks/use-request-create-todo';
 import { useRequestDeleteTodo } from '../../hooks/use-request-delete-todo';
 import { useRequestUpdateTodo } from '../../hooks/use-request-update-todo';
 

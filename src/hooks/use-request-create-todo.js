@@ -3,7 +3,7 @@ import { useState } from 'react';
 export const useRequestCreateTodo = () => {
 	const [todoCreated, setTodoCreated] = useState(false);
 	const [inputTodo, setInputTodo] = useState('');
-	const [errorInputTodo, setErrorInputTodo] = useState('');
+	const [errorInputTodo, setErrorInputTodo] = useState('Введите название');
 
 	const requestCreateTodoItem = (refresher) => {
 		fetch('http://localhost:3500/todos', {
@@ -33,16 +33,14 @@ export const useRequestCreateTodo = () => {
 	};
 
 	const handleBlur = (e) => {
-		console.log(e);
-		let error = null;
 		if (e.target.value.length < 1) {
-			error = 'Минимум 1 символ';
+			setErrorInputTodo('Поле не может быть пустым');
 		}
-		setErrorInputTodo(error);
 	};
 
 	const switchTodo = () => {
 		setTodoCreated(!todoCreated);
+		setErrorInputTodo('Введите название');
 	};
 
 	return {
