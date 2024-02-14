@@ -1,9 +1,11 @@
 import { MainLayout } from './MainLayout';
-import { useRequestGetTodo } from '../../hooks/use-request-get-todo';
-import { useRequestCreateTodo } from '../../hooks/use-request-create-todo';
-import { useSearchTodo } from '../../hooks/use-search-todo';
-import { useArrange } from '../../hooks/use-arrange';
 import { useState } from 'react';
+import {
+	useArrange,
+	useRequestCreateTodo,
+	useRequestGetTodo,
+	useSearchTodo,
+} from '../../hooks/index';
 
 export const MainContainer = () => {
 	const [refreshData, setRefreshData] = useState(false);

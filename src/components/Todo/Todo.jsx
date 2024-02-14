@@ -1,6 +1,5 @@
 import styles from './Todo-Item.module.css';
-import { useRequestUpdateTodo } from '../../hooks/use-request-update-todo.js';
-import { useRequestDeleteTodo } from '../../hooks/use-request-delete-todo';
+import { useRequestUpdateTodo, useRequestDeleteTodo } from '../../hooks/index';
 
 export const CreateTodoItem = ({
 	refresher,
