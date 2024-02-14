@@ -2,7 +2,6 @@ import styles from './Main.module.css';
 import { TodoListLayout } from '../Todo-list/Todo-list-Layout';
 
 export const MainLayout = ({
-	todo,
 	switchTodo,
 	todoCreated,
 	refresher,
@@ -10,7 +9,15 @@ export const MainLayout = ({
 	handleChange,
 	inputTodo,
 	errorInputTodo,
+	setErrorInputTodo,
 	handleBlur,
+	searchInput,
+	handleChangeSearchInput,
+	filtredTodos,
+	switchArrange,
+	isArrange,
+	errorFetch,
+	isLoader,
 }) => {
 	return (
 		<>
@@ -19,26 +26,46 @@ export const MainLayout = ({
 					<div className={styles.Wrapper}>
 						<div className={styles.SearchAndCreateTaskContainer}>
 							<div className={styles.ContainerMini}>
-								<input type="search" placeholder="Поиск" />
-								<div
-									className={
-										!todoCreated ? styles.CreateTaskIcon : styles.DeleteTaskIcon
-									}
-									onClick={switchTodo}
-								>
-									<span>{!todoCreated ? '+' : '-'}</span>
+								<input
+									type="search"
+									placeholder="Поиск"
+									value={searchInput}
+									onChange={handleChangeSearchInput}
+								/>
+								<div className={styles.ContainerOperation}>
+									<div
+										className={
+											!todoCreated
+												? styles.CreateTaskIcon
+												: styles.DeleteTaskIcon
+										}
+										onClick={switchTodo}
+									>
+										<span>{!todoCreated ? '+' : '-'}</span>
+									</div>
+									<div
+										className={
+											!isArrange ? styles.ArrangeOff : styles.ArrangeOn
+										}
+										onClick={switchArrange}
+									>
+										<span>A</span>
+									</div>
 								</div>
 							</div>
 						</div>
 						<TodoListLayout
-							todo={todo}
 							todoCreated={todoCreated}
 							refresher={refresher}
 							requestCreateTodoItem={requestCreateTodoItem}
 							handleChange={handleChange}
 							inputTodo={inputTodo}
 							errorInputTodo={errorInputTodo}
+							setErrorInputTodo={setErrorInputTodo}
 							handleBlur={handleBlur}
+							filtredTodos={filtredTodos}
+							errorFetch={errorFetch}
+							isLoader={isLoader}
 						/>
 					</div>
 				</div>

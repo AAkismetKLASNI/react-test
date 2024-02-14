@@ -1,6 +1,8 @@
 import { MainLayout } from './MainLayout';
 import { useRequestGetTodo } from '../../hooks/use-request-get-todo';
 import { useRequestCreateTodo } from '../../hooks/use-request-create-todo';
+import { useSearchTodo } from '../../hooks/use-search-todo';
+import { useArrange } from '../../hooks/use-arrange';
 import { useState } from 'react';
 
 export const MainContainer = () => {
@@ -17,13 +19,18 @@ export const MainContainer = () => {
 		requestCreateTodoItem,
 		errorInputTodo,
 		handleBlur,
+		setErrorInputTodo,
 	} = useRequestCreateTodo();
 
-	const { todo } = useRequestGetTodo(refreshData);
+	const { todos, errorFetch, isLoader } = useRequestGetTodo(refreshData);
+
+	const { isArrange, switchArrange, getArrangeTodos } = useArrange(todos);
+
+	const { searchInput, handleChangeSearchInput, filtredTodos } =
+		useSearchTodo(getArrangeTodos);
 
 	return (
 		<MainLayout
-			todo={todo}
 			switchTodo={switchTodo}
 			todoCreated={todoCreated}
 			handleChange={handleChange}
@@ -31,7 +38,15 @@ export const MainContainer = () => {
 			requestCreateTodoItem={requestCreateTodoItem}
 			refresher={refresher}
 			errorInputTodo={errorInputTodo}
+			setErrorInputTodo={setErrorInputTodo}
 			handleBlur={handleBlur}
+			searchInput={searchInput}
+			handleChangeSearchInput={handleChangeSearchInput}
+			filtredTodos={filtredTodos}
+			switchArrange={switchArrange}
+			isArrange={isArrange}
+			errorFetch={errorFetch}
+			isLoader={isLoader}
 		/>
 	);
 };

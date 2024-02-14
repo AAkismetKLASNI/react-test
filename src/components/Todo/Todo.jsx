@@ -1,6 +1,6 @@
 import styles from './Todo-Item.module.css';
+import { useRequestUpdateTodo } from '../../hooks/use-request-update-todo.js';
 import { useRequestDeleteTodo } from '../../hooks/use-request-delete-todo';
-import { useRequestUpdateTodo } from '../../hooks/use-request-update-todo';
 
 export const CreateTodoItem = ({
 	refresher,
@@ -36,28 +36,63 @@ export const CreateTodoItem = ({
 };
 
 export const TodoItem = ({ title, id, refresher }) => {
-	const { requestDeleteTodo } = useRequestDeleteTodo(refresher);
-	const { requestUpdateTodo } = useRequestUpdateTodo(refresher);
+	const {
+		isTodoChange,
+		setIsTodoChange,
+		requestUpdateTodo,
+		changeInputTitle,
+		inputTitleChange,
+		errorInputTitleChange,
+		handleBlurChangeInput,
+	} = useRequestUpdateTodo(refresher, title);
 
-	return (
-		<li className={styles.TodoItem}>
-			<div className={styles.ContainerMini}>
-				<div key={id}>{title}</div>
-				<div className={styles.ContainerOperation}>
-					<span
-						className={styles.EditTodo}
-						onClick={() => requestUpdateTodo(id, title)}
+	const { requestDeleteTodo } = useRequestDeleteTodo(refresher);
+
+	if (isTodoChange) {
+		return (
+			<li className={styles.TodoItem}>
+				<div className={styles.ContainerMini}>
+					<input
+						className={styles.inputTodo}
+						value={inputTitleChange}
+						onChange={changeInputTitle}
+						onBlur={handleBlurChangeInput}
+						placeholder="Изменить название"
+					/>
+					{errorInputTitleChange && (
+						<span style={{ color: 'red' }}>{errorInputTitleChange}</span>
+					)}
+					<button
+						className={styles.buttonCreateTodo}
+						onClick={() => requestUpdateTodo(id, inputTitleChange)}
+						disabled={errorInputTitleChange}
 					>
-						И
-					</span>
-					<span
-						className={styles.DeleteTodo}
-						onClick={() => requestDeleteTodo(id)}
-					>
-						-
-					</span>
+						Подтвердить
+					</button>
 				</div>
-			</div>
-		</li>
-	);
+			</li>
+		);
+	} else {
+		return (
+			<li className={styles.TodoItem}>
+				<div className={styles.ContainerMini}>
+					<div key={id}>{title}</div>
+					<div className={styles.ContainerOperation}>
+						<span
+							className={styles.EditTodo}
+							onClick={() => setIsTodoChange(true)}
+						>
+							И
+						</span>
+						<span
+							className={styles.DeleteTodo}
+							onClick={() => requestDeleteTodo(id)}
+						>
+							-
+						</span>
+					</div>
+				</div>
+			</li>
+		);
+	}
 };

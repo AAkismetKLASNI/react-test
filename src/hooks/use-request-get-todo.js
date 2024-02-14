@@ -1,14 +1,22 @@
 import { useEffect, useState } from 'react';
 
 export const useRequestGetTodo = (refreshData) => {
-	const [todo, setTodo] = useState([]);
+	const [todos, setTodos] = useState([]);
+	const [errorFetch, setErrorFetch] = useState('');
+	const [isLoader, setIsLoader] = useState(true);
 
 	useEffect(() => {
 		fetch('http://localhost:3500/todos')
 			.then((res) => res.json())
 			.then((loadedData) => {
-				setTodo(loadedData.reverse());
-			});
+				setErrorFetch('');
+				setTodos(loadedData.reverse());
+			})
+			.catch(() =>
+				setErrorFetch('Не удалось загрузить данные! Подключите 3500 порт!'),
+			)
+			.finally(() => setIsLoader(false));
 	}, [refreshData]);
-	return { todo };
+
+	return { todos, errorFetch, isLoader };
 };

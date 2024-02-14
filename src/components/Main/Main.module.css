@@ -1,6 +1,6 @@
 .Container {
 	width: 100%;
-	max-width: 1220px;
+	max-width: 1250px;
 	margin: 0 auto;
 	padding: 0 10px;
 }
@@ -38,8 +38,15 @@
 	background-color: #d9d9d9;
 }
 
+.ContainerOperation {
+	display: flex;
+	gap: 30px;
+}
+
 .CreateTaskIcon,
-.DeleteTaskIcon {
+.DeleteTaskIcon,
+.ArrangeOff,
+.ArrangeOn {
 	height: 60px;
 	width: 60px;
 	background-color: #ebeca8;
@@ -52,10 +59,18 @@
 	cursor: pointer;
 }
 
-.DeleteTaskIcon {
+.DeleteTaskIcon,
+.ArrangeOn {
 	background-color: #e76767;
 }
 
-.CreateTaskIcon:hover {
+.CreateTaskIcon:hover,
+.DeleteTaskIcon:hover,
+.ArrangeOff:hover,
+.ArrangeOn:hover {
 	opacity: 0.8;
+}
+
+.ArrangeOff {
+	background-color: #ffffff;
 }

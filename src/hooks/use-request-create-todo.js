@@ -19,21 +19,20 @@ export const useRequestCreateTodo = () => {
 		});
 	};
 
-	const handleChange = (e) => {
-		setInputTodo(e.target.value);
+	const handleChange = ({ target }) => {
+		setInputTodo(target.value);
 
 		let error = null;
 
-		if (e.target.value.length > 60) {
+		if (target.value.length > 60) {
 			error = 'Максимум 60 символов';
-			console.log(error);
 		}
 
 		setErrorInputTodo(error);
 	};
 
-	const handleBlur = (e) => {
-		if (e.target.value.length < 1) {
+	const handleBlur = ({ target }) => {
+		if (target.value.length < 1) {
 			setErrorInputTodo('Поле не может быть пустым');
 		}
 	};
@@ -51,5 +50,6 @@ export const useRequestCreateTodo = () => {
 		todoCreated,
 		inputTodo,
 		errorInputTodo,
+		setErrorInputTodo,
 	};
 };
