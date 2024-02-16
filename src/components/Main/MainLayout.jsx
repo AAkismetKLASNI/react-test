@@ -4,7 +4,6 @@ import { TodoListLayout } from '../Todo-list/Todo-list-Layout';
 export const MainLayout = ({
 	switchTodo,
 	todoCreated,
-	refresher,
 	requestCreateTodoItem,
 	handleChange,
 	inputTodo,
@@ -56,7 +55,6 @@ export const MainLayout = ({
 						</div>
 						<TodoListLayout
 							todoCreated={todoCreated}
-							refresher={refresher}
 							requestCreateTodoItem={requestCreateTodoItem}
 							handleChange={handleChange}
 							inputTodo={inputTodo}

@@ -1,19 +1,18 @@
 import { useState } from 'react';
+import { set, ref } from 'firebase/database';
+import { db } from '../firebase';
 
-export const useRequestUpdateTodo = (refresher, title) => {
+export const useRequestUpdateTodo = (title) => {
 	const [isTodoChange, setIsTodoChange] = useState(false);
 	const [inputTitleChange, setInputTitleChange] = useState(title);
 	const [errorInputTitleChange, setErrorInputTitleChange] = useState(null);
 
 	const requestUpdateTodo = (id, title) => {
-		fetch(`http://localhost:3500/todos/${id}`, {
-			method: 'PUT',
-			headers: { 'Content-type': 'application/json:charset=utf-8' },
-			body: JSON.stringify({ title: title }),
-		}).then(() => {
-			setIsTodoChange(false);
-			refresher();
-		});
+		const todosDbRef = ref(db, `todos/${id}`);
+
+		set(todosDbRef, {
+			title: title,
+		}).then(() => setIsTodoChange(false));
 	};
 
 	const changeInputTitle = ({ target }) => {

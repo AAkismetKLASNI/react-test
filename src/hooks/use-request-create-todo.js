@@ -1,21 +1,20 @@
 import { useState } from 'react';
+import { push, ref } from 'firebase/database';
+import { db } from '../firebase';
 
 export const useRequestCreateTodo = () => {
 	const [todoCreated, setTodoCreated] = useState(false);
 	const [inputTodo, setInputTodo] = useState('');
 	const [errorInputTodo, setErrorInputTodo] = useState('Введите название');
 
-	const requestCreateTodoItem = (refresher) => {
-		fetch('http://localhost:3500/todos', {
-			method: 'POST',
-			headers: { 'Content-type': 'application/json;charset=utf-8' },
-			body: JSON.stringify({
-				title: inputTodo,
-			}),
+	const requestCreateTodoItem = () => {
+		const todosDbRef = ref(db, 'todos');
+
+		push(todosDbRef, {
+			title: inputTodo,
 		}).then(() => {
-			setInputTodo('');
 			setTodoCreated(false);
-			refresher();
+			setInputTodo('');
 		});
 	};
 

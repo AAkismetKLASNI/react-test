@@ -8,11 +8,6 @@ import {
 } from '../../hooks/index';
 
 export const MainContainer = () => {
-	const [refreshData, setRefreshData] = useState(false);
-	const refresher = () => {
-		setRefreshData(!refreshData);
-	};
-
 	const {
 		switchTodo,
 		handleChange,
@@ -24,7 +19,7 @@ export const MainContainer = () => {
 		setErrorInputTodo,
 	} = useRequestCreateTodo();
 
-	const { todos, errorFetch, isLoader } = useRequestGetTodo(refreshData);
+	const { todos, errorFetch, isLoader } = useRequestGetTodo();
 
 	const { isArrange, switchArrange, getArrangeTodos } = useArrange(todos);
 
@@ -38,7 +33,6 @@ export const MainContainer = () => {
 			handleChange={handleChange}
 			inputTodo={inputTodo}
 			requestCreateTodoItem={requestCreateTodoItem}
-			refresher={refresher}
 			errorInputTodo={errorInputTodo}
 			setErrorInputTodo={setErrorInputTodo}
 			handleBlur={handleBlur}

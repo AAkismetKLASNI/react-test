@@ -1,8 +1,10 @@
-export const useRequestDeleteTodo = (refresher) => {
+import { ref, remove } from 'firebase/database';
+import { db } from '../firebase';
+
+export const useRequestDeleteTodo = () => {
 	const requestDeleteTodo = (id) => {
-		fetch(`http://localhost:3500/todos/${id}`, { method: 'DELETE' }).then(() =>
-			refresher(),
-		);
+		const deleteTodos = ref(db, `todos/${id}`);
+		remove(deleteTodos);
 	};
 	return { requestDeleteTodo };
 };

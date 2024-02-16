@@ -3,7 +3,6 @@ import { TodoItem, CreateTodoItem } from '../index';
 
 export const TodoListLayout = ({
 	todoCreated,
-	refresher,
 	requestCreateTodoItem,
 	inputTodo,
 	handleChange,
@@ -24,7 +23,6 @@ export const TodoListLayout = ({
 					<ul className={styles.ContainerTodos}>
 						{todoCreated ? (
 							<CreateTodoItem
-								refresher={refresher}
 								requestCreateTodoItem={requestCreateTodoItem}
 								inputTodo={inputTodo}
 								handleChange={handleChange}
@@ -38,7 +36,6 @@ export const TodoListLayout = ({
 									title={title}
 									id={id}
 									key={id}
-									refresher={refresher}
 									inputTodo={inputTodo}
 									handleChange={handleChange}
 									errorInputTodo={errorInputTodo}

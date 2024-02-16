@@ -2,7 +2,6 @@ import styles from './Todo-Item.module.css';
 import { useRequestUpdateTodo, useRequestDeleteTodo } from '../../hooks/index';
 
 export const CreateTodoItem = ({
-	refresher,
 	requestCreateTodoItem,
 	inputTodo,
 	handleChange,
@@ -24,7 +23,7 @@ export const CreateTodoItem = ({
 				)}
 				<button
 					className={styles.buttonCreateTodo}
-					onClick={() => requestCreateTodoItem(refresher)}
+					onClick={() => requestCreateTodoItem()}
 					disabled={errorInputTodo}
 				>
 					Подтвердить
@@ -34,7 +33,7 @@ export const CreateTodoItem = ({
 	);
 };
 
-export const TodoItem = ({ title, id, refresher }) => {
+export const TodoItem = ({ title, id }) => {
 	const {
 		isTodoChange,
 		setIsTodoChange,
@@ -43,9 +42,9 @@ export const TodoItem = ({ title, id, refresher }) => {
 		inputTitleChange,
 		errorInputTitleChange,
 		handleBlurChangeInput,
-	} = useRequestUpdateTodo(refresher, title);
+	} = useRequestUpdateTodo(title);
 
-	const { requestDeleteTodo } = useRequestDeleteTodo(refresher);
+	const { requestDeleteTodo } = useRequestDeleteTodo();
 
 	if (isTodoChange) {
 		return (

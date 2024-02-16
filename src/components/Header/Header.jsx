@@ -7,7 +7,7 @@ export const Header = () => {
 				<div className={styles.Container}>
 					<div className={styles.Wrapper}>
 						<p>TODO-LIST</p>
-						<p>TASK-2</p>
+						<p>TASK-3</p>
 					</div>
 				</div>
 			</header>
