@@ -24,10 +24,6 @@ export const useRequestCreateTodo = () => {
 
 		let error = null;
 
-		if (target.value.length > 60) {
-			error = 'Максимум 60 символов';
-		}
-
 		setErrorInputTodo(error);
 	};
 

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-export const useRequestUpdateTodo = (refresher, title) => {
+export const useRequestUpdateTodo = (refresher) => {
 	const [isTodoChange, setIsTodoChange] = useState(false);
-	const [inputTitleChange, setInputTitleChange] = useState(title);
+	const [inputTitleChange, setInputTitleChange] = useState('');
 	const [errorInputTitleChange, setErrorInputTitleChange] = useState(null);
 
 	const requestUpdateTodo = (id, title) => {
@@ -18,13 +18,6 @@ export const useRequestUpdateTodo = (refresher, title) => {
 
 	const changeInputTitle = ({ target }) => {
 		setInputTitleChange(target.value);
-
-		let error = null;
-
-		if (target.value.length > 60) {
-			error = 'Максимум 60 символов';
-		}
-		setErrorInputTitleChange(error);
 	};
 
 	const handleBlurChangeInput = ({ target }) => {
@@ -41,5 +34,6 @@ export const useRequestUpdateTodo = (refresher, title) => {
 		inputTitleChange,
 		errorInputTitleChange,
 		handleBlurChangeInput,
+		setInputTitleChange,
 	};
 };

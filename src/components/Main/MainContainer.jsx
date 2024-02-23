@@ -3,8 +3,9 @@ import { useState } from 'react';
 import {
 	useArrange,
 	useRequestCreateTodo,
-	useRequestGetTodo,
+	useRequestGetTodos,
 	useSearchTodo,
+	useRequestUpdateTodo,
 } from '../../hooks/index';
 
 export const MainContainer = () => {
@@ -24,12 +25,23 @@ export const MainContainer = () => {
 		setErrorInputTodo,
 	} = useRequestCreateTodo();
 
-	const { todos, errorFetch, isLoader } = useRequestGetTodo(refreshData);
+	const { todos, errorFetch, isLoader } = useRequestGetTodos(refreshData);
 
 	const { isArrange, switchArrange, getArrangeTodos } = useArrange(todos);
 
 	const { searchInput, handleChangeSearchInput, filtredTodos } =
 		useSearchTodo(getArrangeTodos);
+
+	const {
+		setInputTitleChange,
+		setIsTodoChange,
+		isTodoChange,
+		requestUpdateTodo,
+		changeInputTitle,
+		inputTitleChange,
+		errorInputTitleChange,
+		handleBlurChangeInput,
+	} = useRequestUpdateTodo(refresher);
 
 	return (
 		<MainLayout
@@ -49,6 +61,14 @@ export const MainContainer = () => {
 			isArrange={isArrange}
 			errorFetch={errorFetch}
 			isLoader={isLoader}
+			setInputTitleChange={setInputTitleChange}
+			setIsTodoChange={setIsTodoChange}
+			isTodoChange={isTodoChange}
+			requestUpdateTodo={requestUpdateTodo}
+			changeInputTitle={changeInputTitle}
+			inputTitleChange={inputTitleChange}
+			errorInputTitleChange={errorInputTitleChange}
+			handleBlurChangeInput={handleBlurChangeInput}
 		/>
 	);
 };

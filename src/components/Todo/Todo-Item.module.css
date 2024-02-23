@@ -1,7 +1,6 @@
 .TodoItem {
 	background-color: #d9d9d9;
-	padding: 15px;
-	height: 100px;
+	padding: 30px 10px;
 	font-size: 24px;
 	display: flex;
 	align-items: center;
@@ -17,42 +16,38 @@
 	gap: 10px;
 }
 
-.ContainerOperation {
-	display: flex;
-	gap: 30px;
+.TitleTodo {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-decoration: none;
+	color: inherit;
 }
 
-.EditTodo,
-.DeleteTodo {
-	width: 60px;
-	height: 60px;
-	border-radius: 50%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #e76767;
-	cursor: pointer;
+.TitleTodo:hover {
+	color: #e76767;
 }
 
-.EditTodo {
-	background-color: #67b1e7;
-}
-
-.EditTodo:hover,
-.DeleteTodo:hover {
-	opacity: 0.8;
-}
-
-.inputTodo {
-	height: 50px;
-	width: 500px;
+.TextareaTodo {
+	background-color: #d1d1d1;
 	border: none;
 	font-size: 24px;
-	background-color: #bebdbd;
+	height: 500px;
+	min-width: 100%;
+	max-width: 100%;
+	padding: 20px 72px;
+}
+
+.InputTodo {
+	height: 50px;
+	width: 500px;
+	background-color: #d1d1d1;
+	border: none;
+	font-size: 24px;
 	padding-left: 10px;
 }
 
-.buttonCreateTodo {
+.ButtonCreateTodo {
 	border: none;
 	background-color: #7db9e4;
 	height: 50px;
@@ -60,4 +55,15 @@
 	cursor: pointer;
 	font-size: 16px;
 	border-radius: 5px;
+}
+
+.TodoReadContainer {
+	width: 1100px;
+	margin: 0 auto;
+	padding: 20px 10px;
+}
+
+.TodoReadContainer p {
+	word-break: break-all;
+	font-size: 24px;
 }

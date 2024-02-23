@@ -9,7 +9,7 @@ export const useSearchTodo = (getArrangeTodos) => {
 
 	const filtredTodos = () =>
 		getArrangeTodos().filter((todo) =>
-			todo.title.toLowerCase().includes(searchInput.toLowerCase()),
+			todo.title?.toLowerCase().includes(searchInput.toLowerCase()),
 		);
 
 	return { searchInput, handleChangeSearchInput, filtredTodos };

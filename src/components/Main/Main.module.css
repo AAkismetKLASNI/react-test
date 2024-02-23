@@ -41,12 +41,14 @@
 .ContainerOperation {
 	display: flex;
 	gap: 30px;
+	align-items: center;
 }
 
 .CreateTaskIcon,
 .DeleteTaskIcon,
 .ArrangeOff,
-.ArrangeOn {
+.ArrangeOn,
+.BackMainLayout {
 	height: 60px;
 	width: 60px;
 	background-color: #ebeca8;
@@ -71,6 +73,43 @@
 	opacity: 0.8;
 }
 
-.ArrangeOff {
+.ArrangeOff,
+.BackMainLayout {
 	background-color: #ffffff;
+}
+
+.BackMainLayout {
+	text-decoration: none;
+	color: inherit;
+}
+
+.EditTodo,
+.DeleteTodo {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #e76767;
+	cursor: pointer;
+}
+
+.EditTodo {
+	background-color: #67b1e7;
+}
+
+.EditTodo:hover,
+.DeleteTodo:hover {
+	opacity: 0.8;
+}
+
+.buttonCreateTodo {
+	border: none;
+	background-color: #7db9e4;
+	height: 50px;
+	width: 110px;
+	cursor: pointer;
+	font-size: 16px;
+	border-radius: 5px;
 }
