@@ -2,7 +2,7 @@ import styles from '../Todo-Item.module.css';
 import { useContext } from 'react';
 import { UpdateTodoContext } from '../../../../../contexts/all-contexts';
 
-export const TodoChangeLayout = () => {
+export const TodoChangeLayout = ({ id }) => {
 	const {
 		inputTitleChange,
 		changeInputTitle,
