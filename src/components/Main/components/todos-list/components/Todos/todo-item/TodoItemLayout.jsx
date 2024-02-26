@@ -1,6 +1,14 @@
 import styles from '../Todo-Item.module.css';
+import { useContext } from 'react';
+import {
+	DeleteTodoContext,
+	UpdateTodoContext,
+} from '../../../../../contexts/all-contexts';
 
-export const TodoItemLayout = () => {
+export const TodoItemLayout = ({ id, title }) => {
+	const { setIsTodoChange } = useContext(UpdateTodoContext);
+	const { requestDeleteTodo } = useContext(DeleteTodoContext);
+
 	return (
 		<li className={styles.TodoItem}>
 			<div className={styles.ContainerMini}>

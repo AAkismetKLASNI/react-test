@@ -1,6 +1,16 @@
 import styles from '../Todo-Item.module.css';
+import { useContext } from 'react';
+import { CreateTodoContext } from '../../../../../contexts/all-contexts';
 
 export const TodoCreateLayout = () => {
+	const {
+		inputTodo,
+		handleChange,
+		handleBlur,
+		errorInputTodo,
+		requestCreateTodoItem,
+	} = useContext(CreateTodoContext);
+
 	return (
 		<li className={styles.TodoItem}>
 			<div className={styles.ContainerMini}>
@@ -16,7 +26,7 @@ export const TodoCreateLayout = () => {
 				)}
 				<button
 					className={styles.buttonCreateTodo}
-					onClick={() => requestCreateTodoItem(refresher)}
+					onClick={() => requestCreateTodoItem()}
 					disabled={errorInputTodo}
 				>
 					Подтвердить

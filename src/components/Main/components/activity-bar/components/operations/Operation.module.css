@@ -1,0 +1,36 @@
+.ContainerOperation {
+	display: flex;
+	gap: 30px;
+}
+
+.CreateTaskIcon,
+.DeleteTaskIcon,
+.ArrangeOff,
+.ArrangeOn {
+	height: 60px;
+	width: 60px;
+	background-color: #ebeca8;
+	border-radius: 50%;
+	font-size: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.DeleteTaskIcon,
+.ArrangeOn {
+	background-color: #e76767;
+}
+
+.CreateTaskIcon:hover,
+.DeleteTaskIcon:hover,
+.ArrangeOff:hover,
+.ArrangeOn:hover {
+	opacity: 0.8;
+}
+
+.ArrangeOff {
+	background-color: #ffffff;
+}

@@ -1,17 +1,23 @@
 import styles from './Todo-list.module.css';
-import {
-	TodoChangeLayout,
-	TodoCreateLayout,
-	TodoItemLayout,
-} from './components/Todos/index';
+import { TodoCreateLayout, TodoItemLayout } from './components/Todos/index';
 import { useContext } from 'react';
+import {
+	CreateTodoContext,
+	GetTodosContext,
+	SearchTodosContext,
+	UpdateTodoContext,
+} from '../../contexts/all-contexts';
 
 export const TodoListLayout = () => {
+	const { isLoader, errorFetch } = useContext(GetTodosContext);
+	const { filtredTodos } = useContext(SearchTodosContext);
+	const { todoCreated } = useContext(CreateTodoContext);
+
 	return (
 		<>
 			{isLoader ? <div className={styles.Loader}></div> : null}
 			{errorFetch ? (
-				<div className={styles.errorFetch}>{errorFetch}</div>
+				<div className={styles.ErrorFetch}>{errorFetch}</div>
 			) : (
 				<>
 					<ul className={styles.ContainerTodos}>

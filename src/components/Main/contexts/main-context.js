@@ -1,9 +1,11 @@
-import { ArrangeTodosContext } from './context-arrange';
-import { CreateTodosContext } from './context-create-todos';
-import { GetTodosContext } from './context-get-todos';
-import { SearchTodosContext } from './context-search-todos';
-import { UpdateTodoContext } from './context-update-todo';
-import { DeleteTodoContext } from './context-delete.todo';
+import {
+	ArrangeTodosContext,
+	CreateTodoContext,
+	DeleteTodoContext,
+	GetTodosContext,
+	SearchTodosContext,
+	UpdateTodoContext,
+} from './all-contexts';
 
 export const MainContextsProvider = ({
 	arrangeValue,
@@ -16,7 +18,7 @@ export const MainContextsProvider = ({
 }) => {
 	return (
 		<ArrangeTodosContext value={arrangeValue}>
-			<CreateTodosContext value={createValue}>
+			<CreateTodoContext value={createValue}>
 				<UpdateTodoContext value={updateValue}>
 					<GetTodosContext value={getValue}>
 						<DeleteTodoContext value={deleteValue}>
@@ -26,7 +28,7 @@ export const MainContextsProvider = ({
 						</DeleteTodoContext>
 					</GetTodosContext>
 				</UpdateTodoContext>
-			</CreateTodosContext>
+			</CreateTodoContext>
 		</ArrangeTodosContext>
 	);
 };

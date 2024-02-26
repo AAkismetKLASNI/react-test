@@ -1,0 +1,8 @@
+.SearchTodoInput {
+	height: 40px;
+	width: 100%;
+	max-width: 665px;
+	padding-left: 10px;
+	border: none;
+	background-color: #d9d9d9;
+}

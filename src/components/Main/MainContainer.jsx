@@ -28,6 +28,8 @@ export const MainContainer = () => {
 
 	const updateValue = useRequestUpdateTodo(refresher);
 
+	console.log(updateValue);
+
 	return (
 		<MainContextsProvider
 			arrangeValue={arrangeValue}
