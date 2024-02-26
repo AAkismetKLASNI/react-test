@@ -5,7 +5,10 @@ import {
 	useRequestCreateTodo,
 	useRequestGetTodo,
 	useSearchTodo,
+	useRequestDeleteTodo,
+	useRequestUpdateTodo,
 } from '../../hooks/index';
+import { MainContextsProvider } from './contexts/main-context';
 
 export const MainContainer = () => {
 	const [refreshData, setRefreshData] = useState(false);
@@ -13,42 +16,28 @@ export const MainContainer = () => {
 		setRefreshData(!refreshData);
 	};
 
-	const {
-		switchTodo,
-		handleChange,
-		todoCreated,
-		inputTodo,
-		requestCreateTodoItem,
-		errorInputTodo,
-		handleBlur,
-		setErrorInputTodo,
-	} = useRequestCreateTodo();
+	const createValue = useRequestCreateTodo(refresher);
 
-	const { todos, errorFetch, isLoader } = useRequestGetTodo(refreshData);
+	const getValue = useRequestGetTodo(refreshData);
 
-	const { isArrange, switchArrange, getArrangeTodos } = useArrange(todos);
+	const arrangeValue = useArrange(getValue.todos);
 
-	const { searchInput, handleChangeSearchInput, filtredTodos } =
-		useSearchTodo(getArrangeTodos);
+	const searchValue = useSearchTodo(arrangeValue.getArrangeTodos);
+
+	const deleteValue = useRequestDeleteTodo(refresher);
+
+	const updateValue = useRequestUpdateTodo(refresher);
 
 	return (
-		<MainLayout
-			switchTodo={switchTodo}
-			todoCreated={todoCreated}
-			handleChange={handleChange}
-			inputTodo={inputTodo}
-			requestCreateTodoItem={requestCreateTodoItem}
-			refresher={refresher}
-			errorInputTodo={errorInputTodo}
-			setErrorInputTodo={setErrorInputTodo}
-			handleBlur={handleBlur}
-			searchInput={searchInput}
-			handleChangeSearchInput={handleChangeSearchInput}
-			filtredTodos={filtredTodos}
-			switchArrange={switchArrange}
-			isArrange={isArrange}
-			errorFetch={errorFetch}
-			isLoader={isLoader}
-		/>
+		<MainContextsProvider
+			arrangeValue={arrangeValue}
+			createValue={createValue}
+			getValue={getValue}
+			searchValue={searchValue}
+			deleteValue={deleteValue}
+			updateValue={updateValue}
+		>
+			<MainLayout />
+		</MainContextsProvider>
 	);
 };

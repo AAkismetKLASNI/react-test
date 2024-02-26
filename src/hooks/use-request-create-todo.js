@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-export const useRequestCreateTodo = () => {
+export const useRequestCreateTodo = (refresher) => {
 	const [todoCreated, setTodoCreated] = useState(false);
 	const [inputTodo, setInputTodo] = useState('');
 	const [errorInputTodo, setErrorInputTodo] = useState('Введите название');
 
-	const requestCreateTodoItem = (refresher) => {
+	const requestCreateTodoItem = () => {
 		fetch('http://localhost:3500/todos', {
 			method: 'POST',
 			headers: { 'Content-type': 'application/json;charset=utf-8' },
