@@ -11,7 +11,7 @@ export const TodoItemLayout = ({ id, title }) => {
 	const { requestDeleteTodo } = useContext(DeleteTodoContext);
 
 	if (isTodoChange) {
-		return <TodoChangeLayout id={id} />;
+		return <TodoChangeLayout id={id} title={title} />;
 	} else {
 		return (
 			<li className={styles.TodoItem}>

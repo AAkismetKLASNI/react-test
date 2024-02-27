@@ -36,6 +36,7 @@ export const useRequestUpdateTodo = (refresher) => {
 	return {
 		requestUpdateTodo,
 		isTodoChange,
+		setInputTitleChange,
 		setIsTodoChange,
 		changeInputTitle,
 		inputTitleChange,

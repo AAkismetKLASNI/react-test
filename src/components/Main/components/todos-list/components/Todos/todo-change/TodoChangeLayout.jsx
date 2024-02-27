@@ -2,7 +2,7 @@ import styles from '../Todo-Item.module.css';
 import { useContext } from 'react';
 import { UpdateTodoContext } from '../../../../../contexts/all-contexts';
 
-export const TodoChangeLayout = ({ id }) => {
+export const TodoChangeLayout = ({ id, title }) => {
 	const {
 		inputTitleChange,
 		changeInputTitle,
@@ -16,7 +16,7 @@ export const TodoChangeLayout = ({ id }) => {
 			<div className={styles.ContainerMini}>
 				<input
 					className={styles.inputTodo}
-					value={inputTitleChange}
+					value={title}
 					onChange={changeInputTitle}
 					onBlur={handleBlurChangeInput}
 					placeholder="Изменить название"

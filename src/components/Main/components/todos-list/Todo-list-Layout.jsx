@@ -21,9 +21,9 @@ export const TodoListLayout = () => {
 				<>
 					<ul className={styles.ContainerTodos}>
 						{todoCreated ? <TodoCreateLayout /> : null}
-						{filtredTodos().map(({ title, id }) => {
-							return <TodoItemLayout title={title} id={id} key={id} />;
-						})}
+						{filtredTodos().map(({ title, id }) => (
+							<TodoItemLayout title={title} id={id} key={id} />
+						))}
 					</ul>
 				</>
 			)}
