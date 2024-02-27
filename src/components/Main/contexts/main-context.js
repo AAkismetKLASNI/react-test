@@ -4,30 +4,27 @@ import {
 	DeleteTodoContext,
 	GetTodosContext,
 	SearchTodosContext,
-	UpdateTodoContext,
+	RefresherContext,
 } from './all-contexts';
 
 export const MainContextsProvider = ({
 	arrangeValue,
 	createValue,
-	updateValue,
+	refresherValue,
 	getValue,
-	deleteValue,
 	searchValue,
 	children,
 }) => {
 	return (
 		<ArrangeTodosContext.Provider value={arrangeValue}>
 			<CreateTodoContext.Provider value={createValue}>
-				<UpdateTodoContext.Provider value={updateValue}>
+				<RefresherContext.Provider value={refresherValue}>
 					<GetTodosContext.Provider value={getValue}>
-						<DeleteTodoContext.Provider value={deleteValue}>
-							<SearchTodosContext.Provider value={searchValue}>
-								{children}
-							</SearchTodosContext.Provider>
-						</DeleteTodoContext.Provider>
+						<SearchTodosContext.Provider value={searchValue}>
+							{children}
+						</SearchTodosContext.Provider>
 					</GetTodosContext.Provider>
-				</UpdateTodoContext.Provider>
+				</RefresherContext.Provider>
 			</CreateTodoContext.Provider>
 		</ArrangeTodosContext.Provider>
 	);

@@ -1,42 +1,45 @@
-import styles from '../Todo-Item.module.css';
 import { useContext } from 'react';
+import { RefresherContext } from '../../../../../contexts/all-contexts';
 import {
-	DeleteTodoContext,
-	UpdateTodoContext,
-} from '../../../../../contexts/all-contexts';
-import { TodoChangeLayout } from '../todo-change/TodoChangeLayout';
-import { useState } from 'react';
+	useRequestUpdateTodo,
+	useRequestDeleteTodo,
+} from '../../../../../../../hooks/index';
+import { TodoChangeLayout, TodoReadyLayout } from './components/index';
 
 export const TodoItemLayout = ({ id, title }) => {
-	// const [isTodoChange, setIsTodoChange] = useState(false);
+	const refresher = useContext(RefresherContext);
 
-	const { setIsTodoChange, isTodoChange } = useContext(UpdateTodoContext);
+	const {
+		inputTitleChange,
+		changeInputTitle,
+		handleBlurChangeInput,
+		errorInputTitleChange,
+		requestUpdateTodo,
+		setIsTodoChange,
+		isTodoChange,
+	} = useRequestUpdateTodo(refresher, title);
 
-	const { requestDeleteTodo } = useContext(DeleteTodoContext);
+	const { requestDeleteTodo } = useRequestDeleteTodo(refresher);
 
 	if (isTodoChange) {
-		return <TodoChangeLayout id={id} title={title} />;
+		return (
+			<TodoChangeLayout
+				id={id}
+				inputTitleChange={inputTitleChange}
+				changeInputTitle={changeInputTitle}
+				handleBlurChangeInput={handleBlurChangeInput}
+				errorInputTitleChange={errorInputTitleChange}
+				requestUpdateTodo={requestUpdateTodo}
+			/>
+		);
 	} else {
 		return (
-			<li className={styles.TodoItem}>
-				<div className={styles.ContainerMini}>
-					<div key={id}>{title}</div>
-					<div className={styles.ContainerOperation}>
-						<span
-							className={styles.EditTodo}
-							onClick={() => setIsTodoChange(true)}
-						>
-							И
-						</span>
-						<span
-							className={styles.DeleteTodo}
-							onClick={() => requestDeleteTodo(id)}
-						>
-							-
-						</span>
-					</div>
-				</div>
-			</li>
+			<TodoReadyLayout
+				id={id}
+				title={title}
+				setIsTodoChange={setIsTodoChange}
+				requestDeleteTodo={requestDeleteTodo}
+			/>
 		);
 	}
 };

@@ -1,22 +1,19 @@
-import styles from '../Todo-Item.module.css';
-import { useContext } from 'react';
-import { UpdateTodoContext } from '../../../../../contexts/all-contexts';
+import styles from '../../../Todo-Item.module.css';
 
-export const TodoChangeLayout = ({ id, title }) => {
-	const {
-		inputTitleChange,
-		changeInputTitle,
-		handleBlurChangeInput,
-		errorInputTitleChange,
-		requestUpdateTodo,
-	} = useContext(UpdateTodoContext);
-
+export const TodoChangeLayout = ({
+	id,
+	inputTitleChange,
+	changeInputTitle,
+	handleBlurChangeInput,
+	errorInputTitleChange,
+	requestUpdateTodo,
+}) => {
 	return (
 		<li className={styles.TodoItem}>
 			<div className={styles.ContainerMini}>
 				<input
 					className={styles.inputTodo}
-					value={title}
+					value={inputTitleChange}
 					onChange={changeInputTitle}
 					onBlur={handleBlurChangeInput}
 					placeholder="Изменить название"
@@ -26,7 +23,7 @@ export const TodoChangeLayout = ({ id, title }) => {
 				)}
 				<button
 					className={styles.buttonCreateTodo}
-					onClick={() => requestUpdateTodo(id, title)}
+					onClick={() => requestUpdateTodo(id, inputTitleChange)}
 					disabled={errorInputTitleChange}
 				>
 					Подтвердить

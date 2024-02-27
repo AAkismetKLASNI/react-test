@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-export const useRequestUpdateTodo = (refresher) => {
+export const useRequestUpdateTodo = (refresher, title) => {
 	const [isTodoChange, setIsTodoChange] = useState(false);
-	const [inputTitleChange, setInputTitleChange] = useState('');
+	const [inputTitleChange, setInputTitleChange] = useState(title);
 	const [errorInputTitleChange, setErrorInputTitleChange] = useState(null);
 
 	const requestUpdateTodo = (id, title) => {
@@ -36,7 +36,6 @@ export const useRequestUpdateTodo = (refresher) => {
 	return {
 		requestUpdateTodo,
 		isTodoChange,
-		setInputTitleChange,
 		setIsTodoChange,
 		changeInputTitle,
 		inputTitleChange,

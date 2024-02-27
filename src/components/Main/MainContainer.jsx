@@ -1,20 +1,16 @@
 import { MainLayout } from './MainLayout';
-import { useState } from 'react';
 import {
 	useArrange,
 	useRequestCreateTodo,
 	useRequestGetTodo,
 	useSearchTodo,
 	useRequestDeleteTodo,
-	useRequestUpdateTodo,
+	useRefresher,
 } from '../../hooks/index';
 import { MainContextsProvider } from './contexts/main-context';
 
 export const MainContainer = () => {
-	const [refreshData, setRefreshData] = useState(false);
-	const refresher = () => {
-		setRefreshData(!refreshData);
-	};
+	const { refreshData, refresher } = useRefresher();
 
 	const createValue = useRequestCreateTodo(refresher);
 
@@ -24,18 +20,13 @@ export const MainContainer = () => {
 
 	const searchValue = useSearchTodo(arrangeValue.getArrangeTodos);
 
-	const deleteValue = useRequestDeleteTodo(refresher);
-
-	const updateValue = useRequestUpdateTodo(refresher);
-
 	return (
 		<MainContextsProvider
 			arrangeValue={arrangeValue}
 			createValue={createValue}
 			getValue={getValue}
 			searchValue={searchValue}
-			deleteValue={deleteValue}
-			updateValue={updateValue}
+			refresherValue={refresher}
 		>
 			<MainLayout />
 		</MainContextsProvider>
