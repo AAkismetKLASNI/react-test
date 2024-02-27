@@ -4,30 +4,35 @@ import {
 	DeleteTodoContext,
 	UpdateTodoContext,
 } from '../../../../../contexts/all-contexts';
+import { TodoChangeLayout } from '../todo-change/TodoChangeLayout';
 
 export const TodoItemLayout = ({ id, title }) => {
-	const { setIsTodoChange } = useContext(UpdateTodoContext);
+	const { setIsTodoChange, isTodoChange } = useContext(UpdateTodoContext);
 	const { requestDeleteTodo } = useContext(DeleteTodoContext);
 
-	return (
-		<li className={styles.TodoItem}>
-			<div className={styles.ContainerMini}>
-				<div key={id}>{title}</div>
-				<div className={styles.ContainerOperation}>
-					<span
-						className={styles.EditTodo}
-						onClick={() => setIsTodoChange(true)}
-					>
-						И
-					</span>
-					<span
-						className={styles.DeleteTodo}
-						onClick={() => requestDeleteTodo(id)}
-					>
-						-
-					</span>
+	if (isTodoChange) {
+		return <TodoChangeLayout id={id} />;
+	} else {
+		return (
+			<li className={styles.TodoItem}>
+				<div className={styles.ContainerMini}>
+					<div key={id}>{title}</div>
+					<div className={styles.ContainerOperation}>
+						<span
+							className={styles.EditTodo}
+							onClick={() => setIsTodoChange(true)}
+						>
+							И
+						</span>
+						<span
+							className={styles.DeleteTodo}
+							onClick={() => requestDeleteTodo(id)}
+						>
+							-
+						</span>
+					</div>
 				</div>
-			</div>
-		</li>
-	);
+			</li>
+		);
+	}
 };

@@ -17,18 +17,18 @@ export const MainContextsProvider = ({
 	children,
 }) => {
 	return (
-		<ArrangeTodosContext value={arrangeValue}>
-			<CreateTodoContext value={createValue}>
-				<UpdateTodoContext value={updateValue}>
-					<GetTodosContext value={getValue}>
-						<DeleteTodoContext value={deleteValue}>
-							<SearchTodosContext value={searchValue}>
+		<ArrangeTodosContext.Provider value={arrangeValue}>
+			<CreateTodoContext.Provider value={createValue}>
+				<UpdateTodoContext.Provider value={updateValue}>
+					<GetTodosContext.Provider value={getValue}>
+						<DeleteTodoContext.Provider value={deleteValue}>
+							<SearchTodosContext.Provider value={searchValue}>
 								{children}
-							</SearchTodosContext>
-						</DeleteTodoContext>
-					</GetTodosContext>
-				</UpdateTodoContext>
-			</CreateTodoContext>
-		</ArrangeTodosContext>
+							</SearchTodosContext.Provider>
+						</DeleteTodoContext.Provider>
+					</GetTodosContext.Provider>
+				</UpdateTodoContext.Provider>
+			</CreateTodoContext.Provider>
+		</ArrangeTodosContext.Provider>
 	);
 };

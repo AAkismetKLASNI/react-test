@@ -5,7 +5,6 @@ import {
 	CreateTodoContext,
 	GetTodosContext,
 	SearchTodosContext,
-	UpdateTodoContext,
 } from '../../contexts/all-contexts';
 
 export const TodoListLayout = () => {
