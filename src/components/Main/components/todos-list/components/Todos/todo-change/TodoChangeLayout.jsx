@@ -26,7 +26,7 @@ export const TodoChangeLayout = ({ id, title }) => {
 				)}
 				<button
 					className={styles.buttonCreateTodo}
-					onClick={() => requestUpdateTodo(id, inputTitleChange)}
+					onClick={() => requestUpdateTodo(id, title)}
 					disabled={errorInputTitleChange}
 				>
 					Подтвердить

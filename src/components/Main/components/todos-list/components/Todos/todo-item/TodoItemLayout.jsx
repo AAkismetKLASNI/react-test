@@ -5,9 +5,13 @@ import {
 	UpdateTodoContext,
 } from '../../../../../contexts/all-contexts';
 import { TodoChangeLayout } from '../todo-change/TodoChangeLayout';
+import { useState } from 'react';
 
 export const TodoItemLayout = ({ id, title }) => {
+	// const [isTodoChange, setIsTodoChange] = useState(false);
+
 	const { setIsTodoChange, isTodoChange } = useContext(UpdateTodoContext);
+
 	const { requestDeleteTodo } = useContext(DeleteTodoContext);
 
 	if (isTodoChange) {
