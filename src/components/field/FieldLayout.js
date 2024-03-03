@@ -1,10 +1,10 @@
 import styles from './field.module.css';
 
-export const FieldLayout = ({ field, handleClick }) => {
+export const FieldLayout = ({ fields, handleClick, motionGame }) => {
 	return (
 		<>
 			<div className={styles.container}>
-				{field.map((field, index) => (
+				{fields.map((field, index) => (
 					<button
 						className={styles.fieldBtn}
 						key={index}
@@ -14,6 +14,7 @@ export const FieldLayout = ({ field, handleClick }) => {
 					</button>
 				))}
 			</div>
+			<h3>{motionGame}</h3>
 		</>
 	);
 };

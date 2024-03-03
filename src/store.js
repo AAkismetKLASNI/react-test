@@ -1,10 +1,14 @@
+import { ticTacToeReducer, initialState } from './reducer';
+
 const createStore = (reducer, initialState) => {
 	let state = initialState;
 
 	return {
-		dispath: (action) => reducer(state, action),
-		getState: () => state,
+		dispatch: (action) => (state = reducer(state, action)),
+		getState: () => {
+			return state;
+		},
 	};
 };
 
-const store = createStore();
+export const store = createStore(ticTacToeReducer, initialState);

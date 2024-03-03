@@ -1,17 +1,14 @@
 import { FieldLayout } from './FieldLayout';
 import { WIN_PATTERNS } from '../../core/constants';
+import { store } from '../../store';
 
-export const Field = ({
-	field,
-	currentPlayer,
-	setCurrentPlayer,
-	setIsGameEnded,
-	setIsDraw,
-}) => {
-	function calculateWinner(field) {
+export const Field = ({ updateStateFunc }) => {
+	const { currentPlayer, motionGame, fields } = store.getState();
+
+	function calculateWinner(fields) {
 		for (let i = 0; i < WIN_PATTERNS.length; i++) {
 			const [a, b, c] = WIN_PATTERNS[i];
-			if (field[a] && field[a] === field[b] && field[a] === field[c]) {
+			if (fields[a] && fields[a] === fields[b] && fields[a] === fields[c]) {
 				return true;
 			}
 		}
@@ -19,18 +16,32 @@ export const Field = ({
 	}
 
 	const handleClick = (index) => {
-		if (!calculateWinner(field) && !field[index]) {
-			field[index] = currentPlayer === 'X' ? 'X' : 'O';
+		updateStateFunc();
 
-			if (!calculateWinner(field) && field.every((el) => el)) {
-				setIsDraw(true);
-			} else if (calculateWinner(field)) {
-				setIsGameEnded(true);
+		if (!calculateWinner(fields) && !fields[index]) {
+			fields[index] = currentPlayer === 'X' ? 'X' : 'O';
+
+			if (!calculateWinner(fields) && fields.every((el) => el)) {
+				store.dispatch({ type: 'DRAW_TRUE' });
+			} else if (calculateWinner(fields)) {
+				store.dispatch({
+					type: 'GAME_IS_ENDED_TRUE',
+					payload: `Победитель ${currentPlayer}`,
+				});
 			} else {
-				currentPlayer === 'X' ? setCurrentPlayer('O') : setCurrentPlayer('X');
+				currentPlayer === 'X'
+					? store.dispatch({ type: 'CHANGE_PLAYER_ON_O' })
+					: store.dispatch({ type: 'CHANGE_PLAYER_ON_X' });
 			}
 		}
 	};
 
-	return <FieldLayout field={field} handleClick={handleClick} />;
+	return (
+		<FieldLayout
+			fields={fields}
+			currentPlayer={currentPlayer}
+			handleClick={handleClick}
+			motionGame={motionGame}
+		/>
+	);
 };

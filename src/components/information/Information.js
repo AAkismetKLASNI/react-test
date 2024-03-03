@@ -1,38 +1,15 @@
+import { store } from '../../store';
 import { InformationLayout } from './InformationLayout';
 
-export const Information = ({
-	setField,
-	currentPlayer,
-	setCurrentPlayer,
-	isGameEnded,
-	setIsGameEnded,
-	isDraw,
-	setIsDraw,
-}) => {
+export const Information = ({ updateStateFunc }) => {
 	const startNewGame = () => {
-		setField(Array(9).fill(''));
-		setIsGameEnded(false);
-		setCurrentPlayer('X');
-		setIsDraw(false);
+		updateStateFunc();
+
+		store.dispatch({ type: 'CLEAR_FIELDS' });
+		store.dispatch({ type: 'GAME_IS_ENDED_FALSE' });
+		store.dispatch({ type: 'CHANGE_PLAYER_ON_X' });
+		store.dispatch({ type: 'DRAW_FALSE' });
 	};
 
-	const checkDrawAndEndedGame = () => {
-		if (isDraw) {
-			return 'Ничья';
-		} else if (!isDraw && !isGameEnded) {
-			return `Ходит: ${currentPlayer}`;
-		} else if (!isDraw && isGameEnded) {
-			return `Победитель: ${currentPlayer}`;
-		}
-	};
-
-	console.log(checkDrawAndEndedGame());
-
-	return (
-		<InformationLayout
-			currentPlayer={currentPlayer}
-			startNewGame={startNewGame}
-			checkDrawAndEndedGame={checkDrawAndEndedGame}
-		/>
-	);
+	return <InformationLayout startNewGame={startNewGame} />;
 };
