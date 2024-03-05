@@ -1,14 +1,20 @@
-import { store } from '../../store';
 import { InformationLayout } from './InformationLayout';
+import { useDispatch } from 'react-redux';
+import {
+	CHANGE_PLAYER_ON_X,
+	GAME_IS_ENDED_FALSE,
+	CLEAR_FIELDS,
+	DRAW_FALSE,
+} from '../../actions/index';
 
-export const Information = ({ updateStateFunc }) => {
+export const Information = () => {
+	const dispatch = useDispatch();
+
 	const startNewGame = () => {
-		updateStateFunc();
-
-		store.dispatch({ type: 'CLEAR_FIELDS' });
-		store.dispatch({ type: 'GAME_IS_ENDED_FALSE' });
-		store.dispatch({ type: 'CHANGE_PLAYER_ON_X' });
-		store.dispatch({ type: 'DRAW_FALSE' });
+		dispatch(DRAW_FALSE);
+		dispatch(CLEAR_FIELDS);
+		dispatch(CHANGE_PLAYER_ON_X);
+		dispatch(GAME_IS_ENDED_FALSE);
 	};
 
 	return <InformationLayout startNewGame={startNewGame} />;

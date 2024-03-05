@@ -6,7 +6,7 @@ export const initialState = {
 	fields: Array(9).fill(),
 };
 
-export const ticTacToeReducer = (state, action) => {
+export const ticTacToeReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case 'CHANGE_PLAYER_ON_X': {
 			return { ...state, currentPlayer: 'X', motionGame: 'Ходит Х' };
