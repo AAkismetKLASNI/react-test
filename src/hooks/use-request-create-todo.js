@@ -1,26 +1,28 @@
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	changeErrorCreateTodo,
+	setInputTodo,
+	createTodoAsync,
+	toggleTodoCreated,
+} from '../actions';
+import {
+	inputTodoSelector,
+	todoCreatedSelector,
+	errorInputTodoFetch,
+} from '../selectors';
 
-export const useRequestCreateTodo = (refresher) => {
-	const [todoCreated, setTodoCreated] = useState(false);
-	const [inputTodo, setInputTodo] = useState('');
-	const [errorInputTodo, setErrorInputTodo] = useState('Введите название');
+export const useRequestCreateTodo = () => {
+	const dispatch = useDispatch();
+	const todoCreated = useSelector(todoCreatedSelector);
+	const inputTodo = useSelector(inputTodoSelector);
+	const errorInputTodo = useSelector(errorInputTodoFetch);
 
 	const requestCreateTodoItem = () => {
-		fetch('http://localhost:3500/todos', {
-			method: 'POST',
-			headers: { 'Content-type': 'application/json;charset=utf-8' },
-			body: JSON.stringify({
-				title: inputTodo,
-			}),
-		}).then(() => {
-			setInputTodo('');
-			setTodoCreated(false);
-			refresher();
-		});
+		dispatch(createTodoAsync(inputTodo, setInputTodo, toggleTodoCreated));
 	};
 
 	const handleChange = ({ target }) => {
-		setInputTodo(target.value);
+		dispatch(setInputTodo(target.value));
 
 		let error = null;
 
@@ -28,18 +30,18 @@ export const useRequestCreateTodo = (refresher) => {
 			error = 'Максимум 60 символов';
 		}
 
-		setErrorInputTodo(error);
+		dispatch(changeErrorCreateTodo(error));
 	};
 
 	const handleBlur = ({ target }) => {
 		if (target.value.length < 1) {
-			setErrorInputTodo('Поле не может быть пустым');
+			dispatch(changeErrorCreateTodo('Поле не может быть пустым'));
 		}
 	};
 
 	const switchTodo = () => {
-		setTodoCreated(!todoCreated);
-		setErrorInputTodo('Введите название');
+		dispatch(toggleTodoCreated(!todoCreated));
+		dispatch(changeErrorCreateTodo('Введите название'));
 	};
 
 	return {
@@ -50,6 +52,5 @@ export const useRequestCreateTodo = (refresher) => {
 		todoCreated,
 		inputTodo,
 		errorInputTodo,
-		setErrorInputTodo,
 	};
 };

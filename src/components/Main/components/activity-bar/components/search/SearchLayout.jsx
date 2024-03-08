@@ -1,11 +1,6 @@
-import { useContext } from 'react';
-import { SearchTodosContext } from '../../../../contexts/all-contexts';
 import styles from './Search.module.css';
 
-export const SearchLayout = () => {
-	const { searchInput, handleChangeSearchInput } =
-		useContext(SearchTodosContext);
-
+export const SearchLayout = ({ searchInput, handleChangeSearchInput }) => {
 	return (
 		<input
 			className={styles.SearchTodoInput}

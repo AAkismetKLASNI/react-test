@@ -1,5 +1,5 @@
 import styles from './Main.module.css';
-import { ActivityBarLayout, TodoListLayout } from './components/index';
+import { ActivityBarLayout, TodoListContainer } from './components/index';
 
 export const MainLayout = ({}) => {
 	return (
@@ -8,7 +8,7 @@ export const MainLayout = ({}) => {
 				<div className={styles.Container}>
 					<div className={styles.Wrapper}>
 						<ActivityBarLayout />
-						<TodoListLayout />
+						<TodoListContainer />
 					</div>
 				</div>
 			</main>

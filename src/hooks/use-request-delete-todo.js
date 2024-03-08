@@ -1,8 +1,12 @@
-export const useRequestDeleteTodo = (refresher) => {
+import { useDispatch } from 'react-redux';
+import { deleteTodoAsync, deleteTodo } from '../actions';
+
+export const useRequestDeleteTodo = () => {
+	const dispatch = useDispatch();
+
 	const requestDeleteTodo = (id) => {
-		fetch(`http://localhost:3500/todos/${id}`, { method: 'DELETE' }).then(() =>
-			refresher(),
-		);
+		dispatch(deleteTodoAsync(id, deleteTodo));
 	};
+
 	return { requestDeleteTodo };
 };

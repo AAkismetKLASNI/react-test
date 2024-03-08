@@ -1,45 +1,56 @@
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	inputTitleChangeSelector,
+	todoChangeSelector,
+	errorInputTitleChangeSelector,
+} from '../selectors';
+import {
+	isTodoChangeAct,
+	inputTitleChangeAct,
+	errorInputTitleChangeAct,
+	updateTodoAsync,
+	requestOnUpdateTodoAsync,
+} from '../actions';
 
-export const useRequestUpdateTodo = (refresher, title) => {
-	const [isTodoChange, setIsTodoChange] = useState(false);
-	const [inputTitleChange, setInputTitleChange] = useState(title);
-	const [errorInputTitleChange, setErrorInputTitleChange] = useState(null);
+export const useRequestUpdateTodo = () => {
+	const isTodoChange = useSelector(todoChangeSelector);
+	const inputTitleChange = useSelector(inputTitleChangeSelector);
+	const errorInputTitleChange = useSelector(errorInputTitleChangeSelector);
 
-	const requestUpdateTodo = (id, title) => {
-		fetch(`http://localhost:3500/todos/${id}`, {
-			method: 'PUT',
-			headers: { 'Content-type': 'application/json:charset=utf-8' },
-			body: JSON.stringify({ title: title }),
-		}).then(() => {
-			setIsTodoChange(false);
-			refresher();
-		});
+	const dispatch = useDispatch();
+
+	const requestOnSaveTodo = (id, title) => {
+		dispatch(updateTodoAsync(id, title, isTodoChangeAct));
+	};
+
+	const requestOnChangeTodo = (id, title) => {
+		dispatch(
+			requestOnUpdateTodoAsync(id, title, inputTitleChangeAct, isTodoChangeAct),
+		);
 	};
 
 	const changeInputTitle = ({ target }) => {
-		setInputTitleChange(target.value);
-
+		dispatch(inputTitleChangeAct(target.value));
 		let error = null;
-
 		if (target.value.length > 60) {
 			error = 'Максимум 60 символов';
 		}
-		setErrorInputTitleChange(error);
+		dispatch(errorInputTitleChangeAct(error));
 	};
 
 	const handleBlurChangeInput = ({ target }) => {
 		if (target.value.length < 1) {
-			setErrorInputTitleChange('Поле не может быть пустым');
+			dispatch(errorInputTitleChangeAct('Поле не может быть пустым'));
 		}
 	};
 
 	return {
-		requestUpdateTodo,
+		requestOnSaveTodo,
 		isTodoChange,
-		setIsTodoChange,
 		changeInputTitle,
 		inputTitleChange,
 		errorInputTitleChange,
 		handleBlurChangeInput,
+		requestOnChangeTodo,
 	};
 };

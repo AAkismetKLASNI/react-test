@@ -1,14 +1,11 @@
 import styles from './Operation.module.css';
-import { useContext } from 'react';
-import {
-	ArrangeTodosContext,
-	CreateTodoContext,
-} from '../../../../contexts/all-contexts';
 
-export const OperationsLayout = () => {
-	const { todoCreated, switchTodo } = useContext(CreateTodoContext);
-	const { isArrange, switchArrange } = useContext(ArrangeTodosContext);
-
+export const OperationsLayout = ({
+	todoCreated,
+	switchTodo,
+	isArrange,
+	switchArrange,
+}) => {
 	return (
 		<div className={styles.ContainerOperation}>
 			<div

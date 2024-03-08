@@ -1,27 +1,22 @@
-import { useContext } from 'react';
-import { RefresherContext } from '../../../../../contexts/all-contexts';
 import {
 	useRequestUpdateTodo,
 	useRequestDeleteTodo,
 } from '../../../../../../../hooks/index';
 import { TodoChangeLayout, TodoReadyLayout } from './components/index';
 
-export const TodoItemLayout = ({ id, title }) => {
-	const refresher = useContext(RefresherContext);
-
+export const TodoItemLayout = ({ id, title, isChange }) => {
 	const {
-		inputTitleChange,
 		changeInputTitle,
-		handleBlurChangeInput,
 		errorInputTitleChange,
-		requestUpdateTodo,
-		setIsTodoChange,
-		isTodoChange,
-	} = useRequestUpdateTodo(refresher, title);
+		handleBlurChangeInput,
+		inputTitleChange,
+		requestOnSaveTodo,
+		requestOnChangeTodo,
+	} = useRequestUpdateTodo();
 
-	const { requestDeleteTodo } = useRequestDeleteTodo(refresher);
+	const { requestDeleteTodo } = useRequestDeleteTodo();
 
-	if (isTodoChange) {
+	if (isChange) {
 		return (
 			<TodoChangeLayout
 				id={id}
@@ -29,7 +24,7 @@ export const TodoItemLayout = ({ id, title }) => {
 				changeInputTitle={changeInputTitle}
 				handleBlurChangeInput={handleBlurChangeInput}
 				errorInputTitleChange={errorInputTitleChange}
-				requestUpdateTodo={requestUpdateTodo}
+				requestOnSaveTodo={requestOnSaveTodo}
 			/>
 		);
 	} else {
@@ -37,8 +32,8 @@ export const TodoItemLayout = ({ id, title }) => {
 			<TodoReadyLayout
 				id={id}
 				title={title}
-				setIsTodoChange={setIsTodoChange}
 				requestDeleteTodo={requestDeleteTodo}
+				requestOnChangeTodo={requestOnChangeTodo}
 			/>
 		);
 	}

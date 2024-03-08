@@ -1,2 +1,2 @@
-export * from './operations/OperationsLayout';
-export * from './search/SearchLayout';
+export * from './operations/OperationsContainer';
+export * from './search/SearchContainer';

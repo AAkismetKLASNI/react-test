@@ -1,16 +1,19 @@
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { handleSearchInput } from '../actions';
+import { searchInputSelector } from '../selectors';
 
 export const useSearchTodo = (getArrangeTodos) => {
-	const [searchInput, setSearchInput] = useState('');
+	const dispatch = useDispatch();
+	const searchInput = useSelector(searchInputSelector);
 
-	const handleChangeSearchInput = ({ target }) => {
-		setSearchInput(target.value);
-	};
-
-	const filtredTodos = () =>
+	const filteredTodos = () =>
 		getArrangeTodos().filter((todo) =>
-			todo.title.toLowerCase().includes(searchInput.toLowerCase()),
+			todo?.title.toLowerCase().includes(searchInput.toLowerCase()),
 		);
 
-	return { searchInput, handleChangeSearchInput, filtredTodos };
+	const handleChangeSearchInput = ({ target }) => {
+		dispatch(handleSearchInput(target.value));
+	};
+
+	return { searchInput, handleChangeSearchInput, filteredTodos };
 };

@@ -6,7 +6,7 @@ export const TodoChangeLayout = ({
 	changeInputTitle,
 	handleBlurChangeInput,
 	errorInputTitleChange,
-	requestUpdateTodo,
+	requestOnSaveTodo,
 }) => {
 	return (
 		<li className={styles.TodoItem}>
@@ -23,7 +23,7 @@ export const TodoChangeLayout = ({
 				)}
 				<button
 					className={styles.buttonCreateTodo}
-					onClick={() => requestUpdateTodo(id, inputTitleChange)}
+					onClick={() => requestOnSaveTodo(id, inputTitleChange)}
 					disabled={errorInputTitleChange}
 				>
 					Подтвердить

@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { switchArrangeTodos } from '../actions';
+import { isArrangeSelector } from '../selectors';
 
 export const useArrange = (todos) => {
-	const [isArrange, setIsArrange] = useState(false);
+	const dispatch = useDispatch();
+	const isArrange = useSelector(isArrangeSelector);
 
 	const switchArrange = () => {
-		setIsArrange(!isArrange);
+		dispatch(switchArrangeTodos(!isArrange));
 	};
 
 	const getArrangeTodos = () => {

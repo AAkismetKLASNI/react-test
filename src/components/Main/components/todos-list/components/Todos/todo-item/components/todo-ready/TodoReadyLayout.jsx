@@ -3,8 +3,8 @@ import styles from '../../../Todo-Item.module.css';
 export const TodoReadyLayout = ({
 	id,
 	title,
-	setIsTodoChange,
 	requestDeleteTodo,
+	requestOnChangeTodo,
 }) => {
 	return (
 		<li className={styles.TodoItem}>
@@ -13,7 +13,7 @@ export const TodoReadyLayout = ({
 				<div className={styles.ContainerOperation}>
 					<span
 						className={styles.EditTodo}
-						onClick={() => setIsTodoChange(true)}
+						onClick={() => requestOnChangeTodo(id, title)}
 					>
 						И
 					</span>

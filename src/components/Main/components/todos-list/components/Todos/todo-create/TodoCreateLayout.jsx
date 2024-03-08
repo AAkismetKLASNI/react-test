@@ -1,16 +1,12 @@
 import styles from '../Todo-Item.module.css';
-import { useContext } from 'react';
-import { CreateTodoContext } from '../../../../../contexts/all-contexts';
 
-export const TodoCreateLayout = () => {
-	const {
-		inputTodo,
-		handleChange,
-		handleBlur,
-		errorInputTodo,
-		requestCreateTodoItem,
-	} = useContext(CreateTodoContext);
-
+export const TodoCreateLayout = ({
+	inputTodo,
+	handleChange,
+	handleBlur,
+	errorInputTodo,
+	requestCreateTodoItem,
+}) => {
 	return (
 		<li className={styles.TodoItem}>
 			<div className={styles.ContainerMini}>

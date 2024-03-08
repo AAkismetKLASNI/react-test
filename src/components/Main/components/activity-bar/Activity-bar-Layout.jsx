@@ -1,12 +1,12 @@
 import styles from '../../Main.module.css';
-import { SearchLayout, OperationsLayout } from './components/index';
+import { SearchContainer, OperationsContainer } from './components/index';
 
 export const ActivityBarLayout = () => {
 	return (
 		<div className={styles.SearchAndCreateTaskContainer}>
 			<div className={styles.ContainerMini}>
-				<SearchLayout />
-				<OperationsLayout />
+				<SearchContainer />
+				<OperationsContainer />
 			</div>
 		</div>
 	);
