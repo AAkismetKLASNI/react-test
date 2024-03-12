@@ -1,17 +1,20 @@
 import { Field, Information } from './index';
 import styles from './GameLayout.module.css';
 import PropTypes from 'prop-types';
+import { Component } from 'react';
 
-export const GameLayout = () => {
-	return (
-		<>
-			<div className={styles.containerApp}>
-				<Field />
-				<Information />
-			</div>
-		</>
-	);
-};
+export class GameLayout extends Component {
+	render() {
+		return (
+			<>
+				<div className={styles.containerApp}>
+					<Field />
+					<Information />
+				</div>
+			</>
+		);
+	}
+}
 
 GameLayout.propTypes = {
 	field: PropTypes.array,

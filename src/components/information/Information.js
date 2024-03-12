@@ -1,21 +1,35 @@
 import { InformationLayout } from './InformationLayout';
-import { useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import {
 	CHANGE_PLAYER_ON_X,
 	GAME_IS_ENDED_FALSE,
 	CLEAR_FIELDS,
 	DRAW_FALSE,
 } from '../../actions/index';
+import { Component } from 'react';
 
-export const Information = () => {
-	const dispatch = useDispatch();
+export class InformationContainer extends Component {
+	constructor(props) {
+		super(props);
 
-	const startNewGame = () => {
+		this.startNewGame = this.props.startNewGame;
+	}
+
+	render() {
+		return <InformationLayout startNewGame={this.startNewGame} />;
+	}
+}
+
+const mapDispatchToProps = (dispatch) => ({
+	startNewGame: () => {
 		dispatch(DRAW_FALSE);
 		dispatch(CLEAR_FIELDS);
 		dispatch(CHANGE_PLAYER_ON_X);
 		dispatch(GAME_IS_ENDED_FALSE);
-	};
+	},
+});
 
-	return <InformationLayout startNewGame={startNewGame} />;
-};
+export const Information = connect(
+	null,
+	mapDispatchToProps,
+)(InformationContainer);

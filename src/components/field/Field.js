@@ -1,25 +1,27 @@
+import { Component } from 'react';
 import { FieldLayout } from './FieldLayout';
 import { WIN_PATTERNS } from '../../core/constants';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import {
 	CHANGE_PLAYER_ON_O,
 	CHANGE_PLAYER_ON_X,
 	DRAW_TRUE,
 	gameEndedIsTrue,
 } from '../../actions/index';
-import {
-	currentPlayerSelector,
-	fieldsSelector,
-	motionGameSelector,
-} from '../../selectors/index';
 
-export const Field = () => {
-	const dispatch = useDispatch();
-	const currentPlayer = useSelector(currentPlayerSelector);
-	const motionGame = useSelector(motionGameSelector);
-	const fields = useSelector(fieldsSelector);
+export class FieldContainer extends Component {
+	constructor(props) {
+		super(props);
 
-	function calculateWinner(fields) {
+		this.state = {
+			fields: this.props.fields,
+			motionGame: this.props.motionGame,
+			dispatch: this.props.dispatch,
+			currentPlayer: this.props.currentPlayer,
+		};
+	}
+
+	calculateWinner(fields) {
 		for (let i = 0; i < WIN_PATTERNS.length; i++) {
 			const [a, b, c] = WIN_PATTERNS[i];
 			if (fields[a] && fields[a] === fields[b] && fields[a] === fields[c]) {
@@ -29,28 +31,40 @@ export const Field = () => {
 		return null;
 	}
 
-	const handleClick = (index) => {
-		if (!calculateWinner(fields) && !fields[index]) {
-			fields[index] = currentPlayer === 'X' ? 'X' : 'O';
+	handleClick = (index) => {
+		if (!this.calculateWinner(this.props.fields) && !this.props.fields[index]) {
+			this.props.fields[index] = this.props.currentPlayer === 'X' ? 'X' : 'O';
 
-			if (!calculateWinner(fields) && fields.every((el) => el)) {
-				dispatch(DRAW_TRUE);
-			} else if (calculateWinner(fields)) {
-				dispatch(gameEndedIsTrue(currentPlayer));
+			if (
+				!this.calculateWinner(this.props.fields) &&
+				this.props.fields.every((el) => el)
+			) {
+				this.props.dispatch(DRAW_TRUE);
+			} else if (this.calculateWinner(this.props.fields)) {
+				this.props.dispatch(gameEndedIsTrue(this.props.currentPlayer));
 			} else {
-				currentPlayer === 'X'
-					? dispatch(CHANGE_PLAYER_ON_O)
-					: dispatch(CHANGE_PLAYER_ON_X);
+				this.props.currentPlayer === 'X'
+					? this.props.dispatch(CHANGE_PLAYER_ON_O)
+					: this.props.dispatch(CHANGE_PLAYER_ON_X);
 			}
 		}
 	};
 
-	return (
-		<FieldLayout
-			fields={fields}
-			currentPlayer={currentPlayer}
-			handleClick={handleClick}
-			motionGame={motionGame}
-		/>
-	);
-};
+	render() {
+		return (
+			<FieldLayout
+				fields={this.props.fields}
+				motionGame={this.props.motionGame}
+				handleClick={this.handleClick}
+			/>
+		);
+	}
+}
+
+const mapStateToProps = (state) => ({
+	currentPlayer: state.currentPlayer,
+	motionGame: state.motionGame,
+	fields: state.fields,
+});
+
+export const Field = connect(mapStateToProps)(FieldContainer);
