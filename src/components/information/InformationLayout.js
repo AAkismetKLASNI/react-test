@@ -10,6 +10,13 @@ export class InformationLayout extends Component {
 	}
 
 	render() {
-		return <button onClick={this.props.startNewGame}>Начать заново</button>;
+		return (
+			<button
+				className="bg-gray-500 border p-2 text-3xl"
+				onClick={this.props.startNewGame}
+			>
+				Начать заново
+			</button>
+		);
 	}
 }

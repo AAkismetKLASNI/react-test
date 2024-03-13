@@ -1,4 +1,3 @@
-import styles from './field.module.css';
 import { Component } from 'react';
 
 export class FieldLayout extends Component {
@@ -15,10 +14,10 @@ export class FieldLayout extends Component {
 	render() {
 		return (
 			<>
-				<div className={styles.container}>
+				<div className="grid grid-cols-3  border   border-blue-500">
 					{this.props.fields.map((field, index) => (
 						<button
-							className={styles.fieldBtn}
+							className="w-20 h-20 bg-slate-600  border    border-white"
 							key={index}
 							onClick={() => this.props.handleClick(index)}
 						>

@@ -1,5 +1,4 @@
 import { Field, Information } from './index';
-import styles from './GameLayout.module.css';
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 
@@ -7,7 +6,7 @@ export class GameLayout extends Component {
 	render() {
 		return (
 			<>
-				<div className={styles.containerApp}>
+				<div className="flex items-center flex-col gap-10">
 					<Field />
 					<Information />
 				</div>
